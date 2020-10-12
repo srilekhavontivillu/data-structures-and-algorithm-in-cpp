@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+vector<int> v[100002];
+int main()
+{
+    int nodes,edges,x,y;
+    cin>>nodes;
+    cin>>edges;
+    for(int i=0;i<edges;i++)
+    {
+        cin>>x>>y;
+        v[x].push_back(y);
+        v[y].push_back(x);
+    }
+    
+    queue<int> q;
+    set<int> s;
+    int starting_node;
+    cin>>starting_node;
+    q.push(starting_node);
+    s.insert(starting_node);
+    int current=starting_node;
+    
+    while(!q.empty())
+    {
+        
+         cout<<current<<" ";
+         q.pop();
+         
+         for(int k:v[current])
+         {
+             if(s.find(k)==s.end())
+             {
+                 q.push(k);
+                 s.insert(k);
+             }
+         }
+         current=q.front();
+         
+    }
